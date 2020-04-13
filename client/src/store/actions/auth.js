@@ -32,7 +32,7 @@ export const authUser = (path, data) => {
             dispatch(removeError())
         } catch (err) {
             const error = err.response.data
-            dispatch(addError(error))
+            dispatch(addError(error.message))
         }
     }
 }

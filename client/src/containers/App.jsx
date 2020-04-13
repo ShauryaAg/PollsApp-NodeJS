@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 import decode from 'jwt-decode'
 
 import { store } from '../store'
 import { setCurrentUser, addError, setToken } from '../store/actions'
+import NavBar from './NavBar'
+import RouteViews from './RouteViews'
 
 if (localStorage.jwttoken) {
     setToken(localStorage.jwttoken)
@@ -12,13 +15,18 @@ if (localStorage.jwttoken) {
         store.dispatch(setCurrentUser(decode(localStorage.jwttoken)))
     } catch (err) {
         store.dispatch(setCurrentUser({}))
-        store.dispatch(addError())
+        store.dispatch(addError(err))
     }
 }
 
 const App = () => (
     < Provider store={store} >
-        <div>App Works</div>
+        <Router>
+            <Fragment>
+                <NavBar />
+                <RouteViews />
+            </Fragment>
+        </Router>
     </Provider >
 )
 
