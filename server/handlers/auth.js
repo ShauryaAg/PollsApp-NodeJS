@@ -31,7 +31,7 @@ exports.login = async (req, res, next) => {
         if (valid) {
             const token = jwt.sign({ id, username }, process.env.SECRET)
 
-            res.json({ id, username, token })
+            res.status(200).json({ id, username, token })
         } else {
             throw new Error()
         }
