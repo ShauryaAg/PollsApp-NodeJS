@@ -7,6 +7,12 @@ import { logout } from '../store/actions'
 const NavBar = ({ auth, logout }) => (
     <div>
         <ul>
+            <li>
+                <Link to="/">Home</Link>
+            </li>
+            <li>
+                <Link to="/new/poll">Create New Poll</Link>
+            </li>
             {auth.isAuthenticated ?
                 <Fragment>
                     <li>
